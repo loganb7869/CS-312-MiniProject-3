@@ -1,0 +1,62 @@
+<%- include("../partials/header.ejs") %>
+
+<body>
+    <div class="container">
+
+        <div class="text-center">
+            <h2>The Blog</h2>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Blog Post Creation</h2>
+
+                <form action="/submit" method="POST">
+
+                    <div class="mb-3">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="blogTitle">Blog Title: </label>
+                        <input type="text" id="blogTitle" name="blogTitle" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="blogContent">Blog Content: </label>
+                        <input type="text" id="blogContent" name="blogContent" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-secondary">Submit Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="text-center mt-3">
+            <h2>Recent Posts</h2>
+        </div>
+
+        <% posts.forEach(post => { %>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h2 class="card-title"><%= post.blogTitle %></h2>
+                    <p style="font-style:italic;">Created by <%= post.userName %> on <%= post.date %></p>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <p><%= post.blogContent %></p>
+                        </div>
+                    </div>
+                    <br>
+                    <a href="/POST_ID/<%= post.id %>" class="btn btn-success me-2">Edit</a>
+                    <a href="/POST_ID/<%= post.id %>/delete" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
