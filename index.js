@@ -45,6 +45,7 @@ app.get("/", async (req, res) => {
     res.render("index.ejs", {
         title: "Home Page",
         blogs: result.rows,
+        userId: req.session.userId
     });
 });
 
@@ -69,7 +70,9 @@ app.post('/signup', async (req, res) => {
         // if the user id is recongized
         if (exists.rows.length > 0) {
             // return an error
-            return res.render('signup.ejs', { error: 'User already exists. Sorry!' });
+            return res.render('signup.ejs', { 
+                title: "Sign Up", 
+                error: 'User already exists. Sorry!' });
         }
 
         // add user into database
@@ -82,6 +85,25 @@ app.post('/signup', async (req, res) => {
         console.error(err);
         res.send('Error creating user. Try again later!');
     }
+});
+
+// handler for sign out form
+app.get('/signout', async (req, res) => {
+    res.render('signout.ejs', {
+        title: "Sign Out",
+        error: null 
+    });
+});
+
+// sign the user out
+app.post('/signout', async (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(404).send("Cannot log out. Try again.");
+        }
+    })
+
+    res.redirect("/");
 });
 
 // per post form
@@ -149,7 +171,7 @@ app.post('/signin', async (req, res) => {
     }
 
     // store user id and name in session storage
-    req.session.userID = result.rows[0].user_id;
+    req.session.userId = result.rows[0].user_id;
     req.session.userName = result.rows[0].name;
 
     // redirect back to homepage
@@ -158,18 +180,24 @@ app.post('/signin', async (req, res) => {
 
 // blog form creation
 app.get('/new_post', (req, res) => {
-    res.render('new_post.ejs')
+    res.render('new_post.ejs', {
+        title: "Create New Post",
+        error: null,
+        userId: req.session.userId,
+        userName: req.session.userName
+    });
 });
 
 /* per blog post submission  */
 app.post("/new_post", async (req, res) => {
-    const { creator_name, creator_user_id, title, body } = req.body;
+    const { title, body } = req.body;
+
+    let creator_user_id = req.session.userId;
+    let creator_name = req.session.userName;
 
     await pool.query('INSERT INTO blogs (creator_name, creator_user_id, title, body) VALUES ($1,$2,$3,$4)',
         [creator_name, creator_user_id, title, body]
     );
-
-    idNum++;
 
     res.redirect("/");
 });

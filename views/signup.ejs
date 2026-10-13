@@ -24,7 +24,12 @@
                         <input type="text" id="password" name="password" required>
                     </div>
                     
-                    <button class="btn btn-secondary">Sign Up</button>
+                    <button class="btn btn-secondary me-2">Sign Up</button>
+                    <a href="/" class="btn btn-success">Go Back Home</a>
+                    <br>
+                    <% if (error !== null) { %>
+                        <p class="alert"><%= error %></p>
+                    <% } %>
                 </form>
             </div>
         </div>

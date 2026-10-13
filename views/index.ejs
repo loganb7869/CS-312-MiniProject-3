@@ -9,9 +9,14 @@
 
         <div class="card mb-2">
             <div class="card-body">
-                <a href="/signin" class="btn btn-success me-2">Sign In</a>
+                <% if (userId) { %>
+                    <a href="/new_post" class="btn btn-success me-2">New Post</a>
+                    <a href="/signout" class="btn btn-danger">Sign Out</a>
+                <% } else { %>
+                    <a href="/signin" class="btn btn-success me-2">Sign In</a>
 
-                <a href="/signup" class="btn btn-success">Sign Up</a>
+                    <a href="/signup" class="btn btn-success">Sign Up</a>
+                <% } %>
             </div>
         </div>
     </div>
@@ -34,8 +39,10 @@
                         </div>
                     </div>
                     <br>
-                    <a href="/POST_ID/<%= b.blog_id %>" class="btn btn-success me-2">Edit</a>
-                    <a href="/POST_ID/<%= b.blog_id %>/delete" class="btn btn-danger">Delete</a>
+                    <% if (userId === b.creator_user_id) { %> 
+                        <a href="/POST_ID/<%= b.blog_id %>" class="btn btn-success me-2">Edit</a>
+                        <a href="/POST_ID/<%= b.blog_id %>/delete" class="btn btn-danger">Delete</a>
+                    <% } %>
                 </div>
             </div>
         <% }) %>

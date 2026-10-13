@@ -9,13 +9,11 @@
                 <form action="/new_post" method="POST">
 
                     <div class="mb-3">
-                        <label for="creator_name">Name: </label>
-                        <input type="text" id="creator_name" name="creator_name" required>
+                        <label for="creator_name">Name: <%= userName %></label>
                     </div>
 
                     <div class="mb-3">
-                        <label for="creator_user_id">User ID: </label>
-                        <input type="text" id="creator_user_id" name="creator_user_id" required>
+                        <label for="creator_user_id">User ID: <%= userId %></label>
                     </div>
 
                     <div class="mb-3">

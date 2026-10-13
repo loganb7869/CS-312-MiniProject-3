@@ -19,8 +19,10 @@
                         <input type="text" id="password" name="password" required>
                     </div>
                     
-                    <button class="btn btn-secondary">Sign In</button>
+                    <button class="btn btn-secondary me-2">Sign In</button>
+                    <a href="/" class="btn btn-success">Go Back Home</a>
                     <br>
+                    <p>No account? Create one <a href="/signup">here.</a></p>
                     <% if (error !== null) { %>
                         <p class="alert"><%= error %></p>
                     <% } %>

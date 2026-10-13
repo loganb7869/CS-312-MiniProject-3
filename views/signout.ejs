@@ -1,0 +1,23 @@
+<%- include("../partials/header.ejs") %>
+
+<body>
+    <div class="container">
+
+        <div class="text-center">
+            <h2>Signing out...</h2>
+        </div>
+
+        <div class="card mb-2">
+            <div class="card-body">
+                <h4 class="text-center">Sign out?</h4>
+                
+                <form action="/signout" method="POST">
+                    <button type="submit" class="btn btn-success me-2">Yes</button>
+                    
+                    <a href="/" class="btn btn-danger">No</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
