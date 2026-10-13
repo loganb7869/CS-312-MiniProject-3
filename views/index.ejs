@@ -7,29 +7,11 @@
             <h2>The Blog</h2>
         </div>
 
-        <div class="card">
+        <div class="card mb-2">
             <div class="card-body">
-                <h2 class="card-title">Blog Post Creation</h2>
+                <a href="/signin" class="btn btn-success me-2">Sign In</a>
 
-                <form action="/submit" method="POST">
-
-                    <div class="mb-3">
-                        <label for="userName">Name:</label>
-                        <input type="text" id="userName" name="userName" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="blogTitle">Blog Title: </label>
-                        <input type="text" id="blogTitle" name="blogTitle" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="blogContent">Blog Content: </label>
-                        <input type="text" id="blogContent" name="blogContent" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-secondary">Submit Post</button>
-                </form>
+                <a href="/signup" class="btn btn-success">Sign Up</a>
             </div>
         </div>
     </div>
@@ -40,20 +22,20 @@
             <h2>Recent Posts</h2>
         </div>
 
-        <% posts.forEach(post => { %>
+        <% blogs.forEach(b => { %>
             <div class="card mb-2">
                 <div class="card-body">
-                    <h2 class="card-title"><%= post.blogTitle %></h2>
-                    <p style="font-style:italic;">Created by <%= post.userName %> on <%= post.date %></p>
+                    <h2 class="card-title"><%= b.title %></h2>
+                    <p style="font-style:italic;">Created by <%= b.creator_name %> on <%= b.date_created %></p>
 
                     <div class="card">
                         <div class="card-body">
-                            <p><%= post.blogContent %></p>
+                            <p><%= b.body %></p>
                         </div>
                     </div>
                     <br>
-                    <a href="/POST_ID/<%= post.id %>" class="btn btn-success me-2">Edit</a>
-                    <a href="/POST_ID/<%= post.id %>/delete" class="btn btn-danger">Delete</a>
+                    <a href="/POST_ID/<%= b.blog_id %>" class="btn btn-success me-2">Edit</a>
+                    <a href="/POST_ID/<%= b.blog_id %>/delete" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         <% }) %>

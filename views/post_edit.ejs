@@ -9,24 +9,19 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="/POST_ID/<%= post.id %>" method="POST">
+                <form action="/POST_ID/<%= post.blog_id %>" method="POST">
 
                     <div class="mb-3">
-                        <label for="userName">Name:</label>
-                        <input type="text" id="userName" name="userName" value="<%= post.userName %>" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="blogTitle">Blog Title: </label>
-                        <input type="text" id="blogTitle" name="blogTitle" value="<%= post.blogTitle %>" required>
+                        <label for="title">Title: </label>
+                        <input type="text" id="title" name="title" value="<%= post.title %>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="blogContent">Blog Content: </label>
-                        <input type="text" id="blogContent" name="blogContent" value="<%= post.blogContent %>" required>
+                        <label for="body">Blog Content: </label>
+                        <input type="text" id="body" name="body" value="<%= post.body %>" required>
                     </div>
-                    
-                    <input type="submit" class="btn btn-success" value="Save Edits">
+
+                    <button class="btn btn-success" value="Save Edits">Save Edits</button>
                 </form>
             </div>
         </div>

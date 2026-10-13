@@ -5,3 +5,7 @@ body {
 .postHistory {
     margin-bottom: 25px;
 }
+
+.alert {
+    color: red;
+}
